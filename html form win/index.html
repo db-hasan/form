@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript From</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="bg_form">
+        <form action="" id="form">
+            <fieldset>
+            <legend>Students Reg Form</legend>
+                <div class="input-group">
+                    <label class="label" for="">Name</label><br>
+                    <input class="input" type="text" placeholder="Ali Hasan" name="name" id="">
+                </div>
+                <div class="input-group">
+                    <label class="label" for="">Email</label><br>
+                    <input class="input" type="email" placeholder="example@email.com" name="email" id="">
+                </div>
+                <div class="input-group">
+                    <label class="label" for="">Contact</label><br>
+                    <input class="input" type="tel" name="contact" id="">
+                </div>
+                <div class="input-group">
+                    <label class="label" for="">Your Messege</label><br>
+                    <textarea name="message" id="" cols="50" rows="5"></textarea>
+                </div>
+
+                <div class="input-group">
+                    <label class="label" for="">Gender</label><br>
+                    <input type="radio" value="Male" name="Gender" id="male">
+                    <label for="male">Male</label>
+
+                    <input type="radio" value="Female" name="Gender" id="female">
+                    <label for="female">Female</label>
+
+                    <input type="radio" value="Others" name="Gender" id="others">
+                    <label for="others">Others</label>
+                </div>
+                <div class="input-group">
+                    <div>
+                        <label class="label" for="">Course</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" value="PHP" name="Course" id="php">
+                        <label for="php">PHP</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" value="Java" name="Course" id="java">
+                        <label for="java">Java</label>
+                    </div>
+                    <div>
+                        <input type="checkbox" value="NT" name="Course" id="nt">
+                        <label for="nt">NT</label>
+                    </div>
+                </div>
+                <div class="input-group">
+                    <label class="label" for="">Location</label><br>
+                    <select class="input" name="location" id="">
+                        <option value="">--select One--</option>
+                        <option value="Bogura">Bogura</option>
+                        <option value="Rajshahi">Rajshahi</option>
+                        <option value="Dhaka">Dhaka</option>
+                    </select>
+                </div>
+                <button class="btn btn-primary mb-3" type="submit" name="button" id="button">Submit</button>
+            </fieldset>
+        </form>
+    </div>
+
+    <script>
+        class FormValues {
+    constructor(Data) {
+        for (let [name, value] of Data) {
+            this[name] = Data.getAll(name).join(',');
+        }
+    }
+    getData() {
+        var result = "Name: " + this.name + "<br>";
+        result += "Email: " + this.email + "<br>";
+        result += "Contact: " + this.contact + "<br>";
+        result += "Your Message: " + this.message + "<br>";
+        result += "Gender: " + this.gender + "<br>";
+        result += "Course: " + this.course + "<br>";
+        result += "Location: " + this.location + "<br>";
+
+        var win = window.open('', '', 'width=400,height=400');
+        win.document.write(result);
+    }
+}
+form.onsubmit = function () {
+    x = document.querySelector('#form');
+    input_data = new FormData(x);
+    values = new FormValues(input_data);
+    values.getData();
+}
+
+// frm.onsubmit = function (e) {
+//     e.preventDefault(); /* input data dekha jai */
+//     x = document.querySelector('#form');
+//     input_data = new FormData(x);
+//     values = new FormValues(input_data);
+//     values.getData();
+// }
+    </script>
+</body>
+</html>
