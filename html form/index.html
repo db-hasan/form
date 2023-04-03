@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript From</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="bg_form">
+        <form action="" id="my-form">
+            <fieldset>
+            <legend>Students Reg Form</legend>
+            <h1>Create a new account</h1>
+                <div class="input-group">
+                    <label class="label" for="">Name</label><br>
+                    <input class="input" type="text" placeholder="Ali Hasan" name="name" id="name">
+                    <span class="error-message" id="name-error"></span>
+                </div>
+                <div class="input-group">
+                    <label class="label" for="">Email</label><br>
+                    <input class="input" type="text" placeholder="example@email.com" name="email" id="email">
+                    <span class="error-message" id="email-error"></span>
+                </div>
+                
+                <div class="input-group">
+                    <label class="label" for="">Password</label><br>
+                    <input class="input" type="password" name="pass" id="password">
+                    <span class="error-message" id="pass-error"></span>
+                </div>
+                 <div class="input-group">
+                    <label class="label" for="">Re Password</label><br>
+                    <input class="input" type="password" name="repass" id="repass">
+                    <div class="error-message" id="repass-error"></div>
+                </div>
+                <button class="input-group label" type="submit"onchange="onchange()">Submit</button>
+            </fieldset>
+        </form>
+    </div>
+    <!-- <script src="js/csustom.js"></script> -->
+    <script>
+        class FormValidator {
+            constructor(form) {
+                this.form = form;
+                
+            }
+            initialize() {
+                this.form.addEventListener('submit', (event)=>this.validate(event));
+            }
+
+            validate(event) {
+                event.preventDefault();
+                const name = document.getElementById('name');
+                const email = document.getElementById('email');
+                const password = document.getElementById('password');
+                const repass = document.getElementById('repass');
+                const nameError = document.getElementById("name-error")
+                const emailError = document.getElementById("email-error")
+                const passError = document.getElementById("pass-error")
+                const repassError = document.getElementById("repass-error")
+
+                if (name.value === '') {
+                    nameError.innerHTML = 'Please enter your name';
+                } else {
+                    nameError.innerHTML = '';
+                }
+
+                if (email.value === '') {
+                    emailError.innerHTML = 'Please enter your Email';
+                } else if (this.validateEmail(email.value)) {
+                    emailError.innerHTML = '';
+                } else {
+                    emailError.innerHTML = ('Please enter a valid email');
+                }
+
+                if (password.value === '') {
+                    passError.innerHTML = ('Please enter your password');
+                } else {
+                    passError.innerHTML = ''
+                }
+                if (repass.value === '') {
+                    repassError.innerHTML = ("Please enter your repassword");
+                } else {
+                    this.form.submit();
+                }
+            }
+            validateEmail(email) {
+                return /\S+@\S+\.\S+/.test(email);
+            }
+        }
+        const form = document.getElementById('my-form');
+        const validator = new FormValidator(form);
+        validator.initialize();
+    </script>
+</body>
+</html>
